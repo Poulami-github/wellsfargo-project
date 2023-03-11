@@ -45,7 +45,7 @@ const FileUpload = ({ files, setFiles, removeFile }) => {
                 </div>
 
                 <p className="main">Supported files</p>
-                <p className="info">PDF, JPG, PNG</p>
+                <p className="info">PDF, JPG, PNG, CSV</p>
 
             </div>
         </>
