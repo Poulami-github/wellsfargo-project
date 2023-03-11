@@ -35,14 +35,14 @@ async def upload_file() -> dict:
 async def delete_file() -> dict:
     return { result: true, msg: 'file deleted' }
 
-@app.get("/scatterplot", tags=["scatterplot"])
-async def draw_scatterplot() -> dict:
-    df = pd.read_csv('202303 SQSE India Code Test Data.csv')
+@app.post("/scatterplot", tags=["scatterplot"])
+async def draw_scatterplot(df: dict) -> dict:
+    df = pd.read_csv(df[0])
     plt.scatter(df['x'], df['y'])
     plt.show()
     
-@app.get("/linearregression", tags=["linearregression"])
-async def linearregression() -> dict:
+@app.post("/linearregression", tags=["linearregression"])
+async def linearregression(df: dict) -> dict:
     X_train, X_test, y_train, y_test = train_test_split(df['x'], df['y'], train_size = 0.7, 
                                                     test_size = 0.3, random_state = 100)
     X_train_sm = sm.add_constant(X_train)
