@@ -18,7 +18,30 @@ const FileUpload = ({ files, setFiles, removeFile }) => {
             file,
             file.name
         )
+    
         axios.post('http://localhost:8080/upload', formData)
+            .then((res) => {
+                file.isUploading = false;
+                setFiles([...files, file])
+            })
+            .catch((err) => {
+                // inform the user
+                console.error(err)
+                removeFile(file.name)
+            });
+        
+        axios.post('http://localhost:8080/scatterplot', formData)
+            .then((res) => {
+                file.isUploading = false;
+                setFiles([...files, file])
+            })
+            .catch((err) => {
+                // inform the user
+                console.error(err)
+                removeFile(file.name)
+            });
+        
+        axios.post('http://localhost:8080/linearregression', formData)
             .then((res) => {
                 file.isUploading = false;
                 setFiles([...files, file])
